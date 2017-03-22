@@ -35,7 +35,16 @@ router.post('/', function(req, res, next) {
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
 
-        console.log(body);
+        var jsonData=JSON.parse(body);
+        var string="";
+        for (var i=0; i<jsonData.businesses.length; i++ ){
+            var restaurant =jsonData.businesses[i];
+            string+=restaurant.name;
+            string += ", ";
+            console.log(string);
+        }
+        res.send(string)
+
     });
 
 });
